@@ -1,53 +1,53 @@
 let campoIdade;
-let campoComédia;
 let campoDrama;
+let campoComedia;
 
 function setup() {
   createCanvas(800, 400);
-  createElement("h2", "Recomendador de series");
+  createElement("h2", "Recomendador de séries");
   createSpan("Sua idade:");
   campoIdade = createInput("5");
-  campoFantasia = createCheckbox("Gosta de comédia?");
-  campoAventura = createCheckbox("Gosta de drama?");
+  campoDrama = createCheckbox("Gosta de Drama?");
+  campoComedia = createCheckbox("Gosta de Comedia?");
 }
 
 function draw() {
-  background("white");
+  background("rgba(251,181,222,0.71)");
   let idade = campoIdade.value();
-  let gostaDeComédia = campoComédia.checked();
   let gostaDeDrama = campoDrama.checked();
-  let recomendacao = geraRecomendacao(idade, gostaDeComédia, gostaDeDrama);
+  let gostaDeComedia = campoComedia.checked();
+  let recomendacao = geraRecomendacao( idade, gostaDeDrama, gostaDeComedia);
 
-  fill(color(76, 0, 115));
+  fill(color(76, 0, 140));
   textAlign(CENTER, CENTER);
   textSize(38);
   text(recomendacao, width / 2, height / 2);
 }
 
-function geraRecomendacao(idade, gostaDeComédia, gostaDeDrama) {
+function geraRecomendacao(idade, gostaDeDrama, gostaDeComedia) {
   if (idade >= 10) {
     if (idade >= 14) {
-      return "The officie";
+      return "The Boys";
     } else {
       if (idade >= 12) {
-        if(gostaDeComédia || gostaDeDrama) {
-          return "modern family";          
+        if(gostaDeDrama || gostaDeComedia) {
+          return "Midnight gospel";          
         } else{
-         return "How I Met Your Mother";
+         return "Brooklyn-99";
         }
       } else {
-        if (gostaDeDrama) {
-          return "The Bear";
+        if (gostaDeComedia) {
+          return "Stranger Things";
         } else {
-          return "Gossip Girl";
+          return "Gilmore Girls";
         }
       }
     }
   } else {
-    if (gostaDeComédia) {
-      return "Brooklyn-99";
+    if (gostaDeDrama) {
+      return "Gossip Girl";
     } else {
-      return "O feitiço do tempo";
+      return "Breaking Bad";
     }
   }
 }
